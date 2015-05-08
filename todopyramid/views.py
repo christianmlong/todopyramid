@@ -105,7 +105,7 @@ class ToDoViews(Layouts):
         """
         try:
             # try to validate the submitted values
-            controls = self.request.POST.items()
+            controls = list(self.request.POST.items())
             captured = form.validate(controls)
             action = 'created'
             with transaction.manager:
@@ -232,7 +232,7 @@ class ToDoViews(Layouts):
         form = Form(schema, buttons=('submit',))
         css_resources, js_resources = self.form_resources(form)
         if 'submit' in self.request.POST:
-            controls = self.request.POST.items()
+            controls = list(self.request.POST.items())
             try:
                 form.validate(controls)
             except ValidationFailure as e:
@@ -244,12 +244,12 @@ class ToDoViews(Layouts):
                     'js_resources': js_resources,
                     'section': section_name,
                 }
-            values = parse(self.request.params.items())
+            values = parse(list(self.request.params.items()))
             # Update the user
             with transaction.manager:
-                self.user.first_name = values.get('first_name', u'')
-                self.user.last_name = values.get('last_name', u'')
-                self.user.time_zone = values.get('time_zone', u'US/Eastern')
+                self.user.first_name = values.get('first_name', '')
+                self.user.last_name = values.get('last_name', '')
+                self.user.time_zone = values.get('time_zone', 'US/Eastern')
                 DBSession.add(self.user)
             self.request.session.flash(
                 'Settings updated successfully',

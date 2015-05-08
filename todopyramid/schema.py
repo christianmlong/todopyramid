@@ -18,9 +18,9 @@ class SettingsSchema(MappingSchema):
     last_name = SchemaNode(String())
     time_zone = SchemaNode(
         String(),
-        default=u'US/Eastern',
+        default='US/Eastern',
         widget=SelectWidget(
-            values=zip(all_timezones, all_timezones),
+            values=list(zip(all_timezones, all_timezones)),
         ),
     )
 

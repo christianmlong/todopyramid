@@ -1,5 +1,5 @@
-from webhelpers.html.builder import HTML
-from webhelpers.html.grid import ObjectGrid
+from webhelpers2.html.builder import HTML
+from webhelpers2_grid import ObjectGrid
 
 from .utils import localize_datetime
 

@@ -102,7 +102,7 @@ class TodoUser(Base):
     todo_list = relationship(TodoItem, lazy='dynamic')
 
     def __init__(self, email, first_name=None, last_name=None,
-                 time_zone=u'US/Eastern'):
+                 time_zone='US/Eastern'):
         self.email = email
         self.first_name = first_name
         self.last_name = last_name
